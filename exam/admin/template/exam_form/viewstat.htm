@@ -1,0 +1,47 @@
+<!--
+<?php
+print <<<EOT
+--> 
+<table width='100%' cellspacing='1' cellpadding='3' class="tablewidth">
+  <tr bgcolor='#FFFFFF'> 
+    <td bgcolor="#FFFFFF"> [<a href="$admin_path&job=make">添加试卷</a>] [<a href="$admin_path&job=list">试卷管理</a>] 
+    </td>
+  </tr>
+</table>
+<table width='100%' cellspacing='1' cellpadding='3'  class="tablewidth">
+  <tr bgcolor='#FFFFFF' class="head" align="center"> 
+    <td colspan="2">统计报告</td>
+  </tr>
+  <tr bgcolor='#FFFFFF' align="center" onmouseover="this.className='trB'" onmouseout="this.className='trA'"> 
+    <td width="15%">试卷名称</td>
+    <td align="left">$rsdb[name] </td>
+  </tr>
+  <tr bgcolor='#FFFFFF' align="center" onmouseover="this.className='trB'" onmouseout="this.className='trA'"> 
+    <td width="15%">答题人数</td>
+    <td align="left"><b><font color="#FF0000">{$totalman}</font></b> 人</td>
+  </tr>
+  <tr bgcolor='#FFFFFF' align="center" onmouseover="this.className='trB'" onmouseout="this.className='trA'"> 
+    <td width="15%">试题名称</td>
+    <td align="left">$titledb[question]</td>
+  </tr>
+  <tr bgcolor='#FFFFFF' align="center" onmouseover="this.className='trB'" onmouseout="this.className='trA'"> 
+    <td width="15%">试题类型</td>
+    <td align="left">{$paperType[$titledb[type]]}</td>
+  </tr>
+  <tr bgcolor='#FFFFFF' align="center" onmouseover="this.className='trB'" onmouseout="this.className='trA'"> 
+    <td width="15%">试题选项</td>
+    <td align="left">$config</td>
+  </tr>
+  <tr bgcolor='#FFFFFF' align="center" onmouseover="this.className='trB'" onmouseout="this.className='trA'"> 
+    <td width="15%">正确答案</td>
+    <td align="left">$titledb[answer]</td>
+  </tr>
+  <tr bgcolor='#FFFFFF' align="center" onmouseover="this.className='trB'" onmouseout="this.className='trA'">
+    <td width="15%">考生答题情况</td>
+    <td align="left">$statshow</td>
+  </tr>
+</table>
+<!--
+EOT;
+?>
+-->

@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<HEAD>
+<!--
+<?php
+print <<<EOT
+-->
+<title>考试登录-$rsdb[name]-{$webdb[webname]}</title>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META content="MSHTML 6.00.2900.3132" name=GENERATOR>
+<style type="text/css">
+<!--
+body, form{font-size: 14px;}
+a{text-decoration: none;}
+a:hover {text-decoration: underline;}
+.PhotoContainer{background:url($webdb[www_url]/images/v7/index_hbg.gif) right top no-repeat;}
+.PhotoContainer .photohead td{height:33px;line-height:33px;}
+.PhotoContainer .photohead .L{
+	width:110px;
+	text-align:center;
+	padding-right:15px;	
+	background:url($webdb[www_url]/images/v7/index_hl2.gif) left top no-repeat;
+	font-weight:bold;
+	/*color:#FF5300;*/
+}
+.PhotoContainer .photohead .R{
+	text-align:center;
+	padding-right:25px;	
+	font-weight:bold;
+	color:#008EBD;
+}
+.PhotoContainer .photocont td{
+	height:145px;
+	background:url($Murl/images/login_bg.jpg) left bottom no-repeat;
+	padding-left:160px;
+	border:#DDD solid 1px;
+	border-top:0;
+}
+.input{
+	border:1px solid #D4D4D4;
+	width:130px;
+	height:16px;
+	margin:10px 0 0 6px;
+}
+.Submit{
+	margin:10px 0 12px 120px;
+	height:23px;
+	padding-top:2px;
+	border:1px solid #D4D4D4;
+}
+-->
+</style>
+</HEAD>
+<BODY topMargin="80px">
+<table width="400px" border="0" align="center" cellpadding="0" cellspacing="0" class="PhotoContainer">
+  <tr class="photohead">
+    <td class="L">考试登录</td>
+	<td class="R">{$webdb[webname]}考试系统</td>
+  </tr>
+<form name="form" id="form" method="post" action="?fid=$fid&id=$id" enctype="multipart/form-data">
+  <tr>
+    <td colspan="2" style="padding:14px 0 0 20px;border:#DDD solid 1px;border-top:0;border-bottom:0;color:#008EBD;">试题名称: 《$rsdb[name]》</td>
+  </tr>
+  <tr class="photocont">
+    <td colspan="2">
+<!--
+EOT;
+if(!$rsdb[iftruename]){print <<<EOT
+-->
+    姓 名: <input type="text" name="truename" id="truename" size="15" class="input" value="$truename"><br>
+<!--
+EOT;
+}if(!$rsdb[ifclass]){print <<<EOT
+-->
+	班 别: <input type="text" name="aclass" id="aclass" size="15" class="input" value="$aclass"><br>
+<!--
+EOT;
+}if(!$rsdb[ifnumber]){print <<<EOT
+-->
+	考 号: <input type="text" name="number" id="number" size="15" class="input" value="$number"><br>
+<!--
+EOT;
+}print <<<EOT
+-->
+<script language="javascript">
+function firm(){
+	if(!$rsdb[iftruename]){
+		var m1="\\r\\n姓名: "+document.getElementById("truename").value;
+		if(!document.getElementById("truename").value){
+			alert('请填写姓名!'); 
+			return false;
+		}
+	}else{
+		var m1="";
+	}
+	if(!$rsdb[ifclass]){
+		var m2="\\r\\n班级: "+document.getElementById("aclass").value;
+		if(!document.getElementById("aclass").value){
+			alert('请填写班级!'); 
+			return false;
+		}
+	}else{
+		var m2="";
+	}
+	if(!$rsdb[ifnumber]){
+		var m3="\\r\\n考号: "+document.getElementById("number").value;
+		if(!document.getElementById("number").value){
+			alert('请填写考号!');
+			return false;
+		}
+	}else{
+		var m3="";
+	}
+	var msg=confirm("您确认填写的信息正确无误吗？\\r\\n提交后将不能再作修改！\\r\\n"+m1+m2+m3); 
+    if(msg==true){
+		document.getElementById("form").submit();  
+     }
+	 return false;
+}
+</script>
+	<input type="button" name="Submit" value="登 录"  class="Submit" onclick="return firm();">         
+    </td>
+  </tr>
+</form>
+</table>
+
+</BODY>
+</HTML>
+<!--
+EOT;
+?>
+-->

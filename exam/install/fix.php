@@ -1,0 +1,9 @@
+<?php
+
+return array(
+	'name'=>'¿¼ÊÔÄ£¿é',
+	'pre'=>'exam_',
+	'setup'=>1,
+);
+
+?>

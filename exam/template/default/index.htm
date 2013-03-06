@@ -1,0 +1,196 @@
+<!--
+<?php
+print <<<EOT
+-->
+<link rel="stylesheet" type="text/css" href="$webdb[www_url]/images/v7/exam/index.css">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="MainTable">
+  <tr> 
+    <td class="SideL"> 
+    	<div class="slidecont">$label[exam_rollpic]</div>
+        <div class="sortcont mt10">
+          <div class="head"><span class="FL F14 FB">考试分类</span><span class="FR"></span></div>
+          <div class="cont">
+<!--
+EOT;
+foreach($Fid_db[0] AS $key=>$name){
+print <<<EOT
+-->
+            <dl>
+            	<dt>
+                	<a href="$Mdomain/list.php?fid=$key" target="_blank" class="bigsort">{$name}:</a>
+<!--
+EOT;
+foreach($Fid_db[$key] AS $key2=>$name2){
+print <<<EOT
+-->
+               		<a href="$Mdomain/list.php?fid=$key2" target="_blank">$name2</a> | 
+<!--
+EOT;
+}print <<<EOT
+-->				</dt>
+				<dd class="more"><a href="$Mdomain/list.php?fid=$key" target="_blank">&gt;&gt;</a></dd>
+            </dl>
+<!--
+EOT;
+}print <<<EOT
+-->
+            </div>
+        </div>
+    </td>
+    <td class="SideC">
+    	<div class="CenterCont">
+        	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="Center_In">
+              <tr>
+                <td class="head"><span class="FL F14 FB">$label[exam_tt7]</span><span class="FR"> </span></td>
+              </tr>
+              <tr>
+                <td class="cont topt">$label[exam_top1]
+                </td>
+              </tr>
+            </table>
+        </div>
+        <div class="CenterCont mt10">
+        	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="Center_In">
+              <tr>
+                <td class="head"><span class="FL F14 FB">$label[exam_tt8]</span><span class="FR">$label[exam_tt9]</span></td>
+              </tr>
+              <tr>
+                <td class="cont">
+                	
+              
+                    $label[exam_top2]
+                </td>
+              </tr>
+            </table>
+        </div>
+    </td>
+    <td class="SideR">
+    	<div class="usercenter">
+          <div class="head"><span class="FL F14 FB">用户中心通道</span></div>
+          <div class="cont">
+                <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="Button">
+                  <tr>
+                    
+              <td> <span class="but1"><a href="$webdb[www_url]/do/reg.php" target="_blank">注册通行证</a></span> 
+                <span class="but2"><a href="$webdb[www_url]/do/login.php" target="_blank">会员登录</a></span>	
+                <span class="but3"><a href="$webdb[www_url]/member/" target="_blank">会员中心</a></span> 
+                <span class="but4"><a href="$webdb[www_url]/member/?main=$Murl/member/exam_title.php?job=make" target="_blank">创建试题</a></span> 
+                <span class="but5"><a href="$webdb[www_url]/member/?main=$Murl/member/list.php?job=list" target="_blank">我的考卷</a></span> 
+                <span class="but6"><a href="$webdb[www_url]/member/?main=$Murl/member/exam_title.php?job=list" target="_blank">试题管理</a></span> 
+              </td>
+                  </tr>
+            </table>
+                <table width="100%" border="0" cellspacing="0" cellpadding="0" class="listtitle">
+                  <tr>
+                    <td>
+                    
+                        $label[exam_top03]
+                    </td>
+                  </tr>
+                </table>
+          </div>
+        </div>
+        <div class="TopQuestions mt10">
+          <div class="head"><span class="FL F14 FB">$label[exam_tt10]</span><span class="FR">$label[exam_tt11]</span></div>
+          <div class="cont">
+		   $label[exam_top3]
+            
+          
+             
+          </div>
+        </div>
+    </td>
+  </tr>
+</table>
+<div class="MiddleAd">
+	<div class="adl">$label[exam_ad2]</div>
+    <div class="adr">$label[exam_ad3]</div>
+</div>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="MainTable">
+  <tr> 
+    <td class="Mainhead">
+    	<span class="FL">$label[exam_tt5]</span>
+        <span class="FR">$label[exam_tt6]
+        
+        </span>
+    </td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="MainContainer">
+  <tr> 
+    <td class="SideTdL">
+    	<div class="sidecontainer">
+        	<div class="head"><span class="FB F14">$label[exam_tt1]</span></div>
+            <div class="cont">
+            	<div class="sort">
+                $label[exam_q1]
+                </div>
+                
+          
+               $label[exam_a3]
+            </div>
+        </div>
+    </td>
+    <td class="SideTdC">
+    	<div class="sidecontainer">
+        	<div class="head"><span class="FB F14">$label[exam_tt2]</span></div>
+            <div class="cont">
+            	<div class="sort">
+				$label[exam_q2]
+                
+                </div>$label[exam_a4]
+                
+            </div>
+        </div>
+    </td>
+    <td class="SideTdR">
+    	<div class="sidercontainer">
+        	<div class="head"><span class="FL FB F14">$label[exam_tt12]</span><span class="FR">$label[exam_tt13]</span></div>
+            <div class="cont">
+                
+          $label[exam_a1]
+               
+            </div>
+        </div>
+    </td>
+  </tr>
+</table>  
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="MainContainer">
+  <tr> 
+    <td class="SideTdL">
+    	<div class="sidecontainer">
+        	<div class="head"><span class="FB F14">$label[exam_tt3]</span></div>
+            <div class="cont">
+            	<div class="sort">$label[exam_q3]
+                
+                </div>
+                $label[exam_a5]
+            </div>
+        </div>
+    </td>
+    <td class="SideTdC">
+    	<div class="sidecontainer">
+        	<div class="head"><span class="FB F14">$label[exam_tt4]</span></div>
+            <div class="cont">
+            	<div class="sort">$label[exam_q4]
+                	
+                </div>
+               $label[exam_a6]
+            </div>
+        </div>
+    </td>
+    <td class="SideTdR">
+    	<div class="sidercontainer">
+        	<div class="head"><span class="FL FB F14">$label[exam_tt14]</span><span class="FR">$label[exam_tt15]</span></div>
+            <div class="cont">
+                $label[exam_a2]
+            </div>
+        </div>
+    </td>
+  </tr>
+</table>
+<div class="FootAd">$label[exam_ad1]</div>
+<!--
+EOT;
+?>
+-->

@@ -1,0 +1,139 @@
+<!--
+<?php
+print <<<EOT
+--> 
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="MainTable">
+  <tr> 
+    <td height="200" valign="top" class="Main"> 
+	
+    
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" class="dragTable">
+        <tr> 
+          <td height="21" class="head"> 
+            <h3 class="L"></h3>
+            <span class="TAG">$rsdb[fname] -&gt; $rsdb[name]</span>			
+            <h3 class="R"></h3>
+          </td>
+        </tr>
+        <tr> 
+          <td height="50" class="middle" valign="top">
+		  
+<table width="99%" border="0" cellspacing="0" cellpadding="0" style="border:1px solid #D1D1D1;margin-bottom:5px;">
+  <tr>
+                <td style="background:#F7F7F7;border:2px solid #EEEEEE;padding:5px;line-height:21px;"> 
+<script language="javascript" type="text/javascript">
+function tmp_sty1()
+{
+document.getElementById('d1').style.display='';
+document.getElementById('d2').style.display=document.getElementById('d3').style.display='none';
+}
+function tmp_sty2()
+{
+document.getElementById('d1').style.display=document.getElementById('d3').style.display='none';
+document.getElementById('d2').style.display='';
+}
+function tmp_sty3(){
+document.getElementById('d1').style.display=document.getElementById('d2').style.display='none';
+document.getElementById('d3').style.display='';
+}
+function post(){
+	document.getElementById("form").submit();
+}
+function post1(){
+	document.getElementById("form").action= "?id=$id&excel=1"; 
+	document.getElementById("form").submit();
+}
+</script>
+<form name="form" id="form" method="post" action="?id=$id" onkeydown="if(event.keyCode==13){form.submit(); return false;}" style="margin:0">  
+<div style="padding: 2px 4px 4px 4px;background:#ffffcc; border:1px solid #ccc">
+	<span style="padding:0 14px 0 14px;color:#008EBD;">
+		<font style="color:#444444;font-weight:bold;">条件查看方式：</font> 
+		<input type="radio" name="search" value="1" $ck[1] onclick="tmp_sty1();">班级 
+        <input type="radio" name="search" value="2" $ck[2] onclick="tmp_sty2();">考试时段
+		<input type="radio" name="search" value="3" $ck[3] onclick="tmp_sty3();">考号范围
+	</span>
+	<span>
+		<span id="d1" style="$sty[1]"> 
+        	班级名称: <input type="text" name="aclass" size="32" value="$aclass">
+        </span>
+		<span id="d2" style="$sty[2]">
+        	起: <input type="text" name="time1" size="16" value="$time1">&nbsp;&nbsp;止: <input type="text" name="time2" size="16" value="$time2">
+        </span>
+		<span id="d3" style="$sty[3]"> 
+        	起: <input type="text" name="number1" size="16" value="$number1">&nbsp;&nbsp;止: <input type="text" name="number2" size="16" value="$number2">
+        </span>&nbsp;
+		每页显示 <input name="rows" type="text" value="$rows" maxlength="2" style="width:16px;"> 条&nbsp;&nbsp;
+	</span>
+	<span onclick="return post();" style="border:1px solid #008EBD;padding:2px 4px 0 4px;background:#BFDFFF;cursor:pointer;">提 交</span>&nbsp;&nbsp;
+	<a href="?id=$id" style="border:1px solid #008EBD;padding:2px 4px 0 4px;background:#BFDFFF;cursor:pointer;">重 置</a>&nbsp;&nbsp;
+	<span onclick="return post1();" style="border:1px solid #008EBD;padding:2px 4px 0 4px;cursor:pointer;">导出EXCEL</span>
+</div>
+</form>
+
+
+				  <table width="100%" border="0" cellspacing="2" cellpadding="2">
+                    <tr align="center" bgcolor="#EAE2AA">
+<!--
+EOT;
+if(!$rsdb[iftruename]) $truename_t = "<td><b><font color='#FF0000'>姓名</font></b></td>";
+if(!$rsdb[ifclass]) $aclass_t = "<td><b><font color='#FF0000'>班级</font></b></td>";
+if(!$rsdb[ifnumber]) $number_t = "<td><b><font color='#FF0000'>考号</font></b></td>";
+print <<<EOT
+-->
+                      <td><b><font color="#FF0000">排名</font></b></td>
+					  {$truename_t}
+					  {$aclass_t}
+					  {$number_t}
+                      <td><b><font color="#FF0000">用户名</font></b></td>
+                      <td><b><font color="#FF0000">完成用时</font></b></td>
+                      <td><b><font color="#FF0000">考试分数</font></b></td>
+                      <td><b><font color="#FF0000">交卷时间</font></b></td>
+                    </tr>
+<!--
+EOT;
+foreach($listdb AS $rs){
+$bg=$rs[i]%2==0?'#EBEBEB':'';
+if(!$rsdb[iftruename]) $truename_c = "<td>$rs[student_truename]</td>";
+if(!$rsdb[ifclass]) $aclass_c = "<td>$rs[aclass]</td>";
+if(!$rsdb[ifnumber]) $number_c = "<td>$rs[number]</td>";
+print <<<EOT
+-->
+                    <tr align="center" bgcolor="$bg"> 
+                      <td>$rs[i]</td>
+					  {$truename_c}
+					  {$aclass_c}
+					  {$number_c}
+                      <td>$rs[student_name]</td>
+                      <td>$rs[usetime]</td>
+                      <td>$rs[total_fen]</td>
+                      <td>$rs[posttime]</td>
+                    </tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+                    <tr align="center"> 
+                      <td colspan="8"><br>$showpage</td>
+                    </tr>
+                  </table>
+                  
+                </td>
+  </tr>
+</table>
+            
+          </td>
+        </tr>
+        <tr> 
+          <td class="foot"> 
+            <h3 class="L"></h3>
+            <h3 class="R"></h3>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!--
+EOT;
+?>
+-->

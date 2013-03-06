@@ -1,0 +1,41 @@
+<!--
+<?php
+print <<<EOT
+--> 
+<table width='100%' cellspacing='1' cellpadding='3' class="tablewidth">
+  <tr bgcolor='#FFFFFF'> 
+    <td bgcolor="#FFFFFF"> [<a href="$admin_path&job=make">添加试卷</a>] [<a href="$admin_path&job=list">试卷管理</a>] 
+    </td>
+  </tr>
+</table>
+<table width='100%' cellspacing='1' cellpadding='3'  class="tablewidth">
+  <tr> 
+    <td><b><font color="#FF0000">导航:</font> $rsdb[fname] -&gt; $rsdb[name]</b></td>
+  </tr>
+</table>
+<table width='100%' cellspacing='1' cellpadding='3'  class="tablewidth">
+  <tr bgcolor='#FFFFFF' class="head" align="center"> 
+    <td width="15%">题目类型 </td>
+    <td width="56%">题目元素名称</td>
+    <td>考生答案对比分析</td>
+  </tr>
+  <!--
+EOT;
+foreach($listdb AS $key=>$rs){
+print <<<EOT
+-->
+  <tr bgcolor='#FFFFFF' align="center" onmouseover="this.className='trB'" onmouseout="this.className='trA'"> 
+    <td width="15%">{$paperType[$rs[type]]}</td>
+    <td width="56%" align="left"> $rs[question]</td>
+    <td><a href="$admin_path&job=viewstat&id=$id&title_id=$rs[id]">查看</a></td>
+  </tr>
+  <!--
+EOT;
+}
+print <<<EOT
+-->
+</table>
+<!--
+EOT;
+?>
+-->

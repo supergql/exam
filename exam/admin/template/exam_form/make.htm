@@ -1,0 +1,142 @@
+<!--
+<?php
+print<<<EOT
+-->
+ <script src="../images/default/setday.js"></script>
+<table width='100%' cellspacing='1' cellpadding='3' class="tablewidth">
+  <tr bgcolor='#FFFFFF'> 
+    <td bgcolor="#FFFFFF"> [<a href="$admin_path&job=make">创建试卷</a>] [<a href="$admin_path&job=list">试卷管理</a>] 
+    </td>
+  </tr>
+</table>
+<table width=100% cellspacing=1 cellpadding=3  class="tablewidth">
+  <tr class="head"> 
+    <td align="center" colspan="2"> <span class=bold><font color="#FFFFFF">添加试卷</font></span></td>
+  </tr>
+  <form action="$admin_path&action=$job" method="POST">
+    <tr> 
+      <td bgcolor=#FFFFFF width="30%"> 所属分类:</td>
+      <td bgcolor=#FFFFFF width="70%">$sort_fid</td>
+    </tr><tr> 
+      <td bgcolor=#FFFFFF width="30%">试卷名称:</td>
+      <td bgcolor=#FFFFFF width="70%"> 
+        <input type="text" name="atc_name" size="50" value="$rsdb[name]">
+      </td>
+    </tr><tr> 
+      <td bgcolor=#FFFFFF width="30%">考生真实姓名:<span help=1>启用考生真实姓名后，如果考生在注册时没有填写真实姓名，则进入考试时会要求填写。</span></td>
+      <td bgcolor=#FFFFFF width="70%"> 
+        <input type="radio" name="atc_iftruename" value="0" $iftruename[0]>
+        启用 
+        <input type="radio" name="atc_iftruename" value="1"  $iftruename[1]>
+        关闭 </td>
+    </tr><tr> 
+      <td bgcolor=#FFFFFF width="30%">班级:</td>
+      <td bgcolor=#FFFFFF width="70%"> 
+        <input type="radio" name="atc_ifclass" value="0" $ifclass[0]>
+        需要填写 
+        <input type="radio" name="atc_ifclass" value="1"  $ifclass[1]>
+        不需要填写 </td>
+    </tr><tr> 
+      <td bgcolor=#FFFFFF width="30%">考试证号:</td>
+      <td bgcolor=#FFFFFF width="70%"> 
+        <input type="radio" name="atc_ifnumber" value="0" $ifnumber[0]>
+        需要填写 
+        <input type="radio" name="atc_ifnumber" value="1"  $ifnumber[1]>
+        不需要填写 </td>
+    </tr><tr> 
+      <td bgcolor=#FFFFFF width="30%">收费({$webdb[MoneyName]}):</td>
+      <td bgcolor=#FFFFFF width="70%"> 
+        <input type="text" name="atc_money" size="8" value="$rsdb[money]">
+        {$webdb[MoneyDW]} </td>
+    </tr><tr> 
+      <td bgcolor=#FFFFFF width="30%">答题时间限制:</td>
+      <td bgcolor=#FFFFFF width="70%"> 
+        <input type="text" name="atc_totaltime" size="8" value="$rsdb[totaltime]">
+        分钟,留空或为0时,则不限制 </td>
+    </tr><tr> 
+      <td bgcolor=#FFFFFF width="30%">试卷开放日期:</td>
+      <td bgcolor=#FFFFFF width="70%">开始日期 
+        <input type="text" name="atc_begintime" size="20" value="$rsdb[begintime]" onClick="setday(this)">
+        结束日期 
+        <input type="text" name="atc_endtime" size="20" value="$rsdb[endtime]" onClick="setday(this)">
+      </td>
+    </tr><tr> 
+      <td bgcolor=#FFFFFF width="30%">允许考试的用户组:(留空则不作限制)</td>
+      <td bgcolor=#FFFFFF width="70%">$groups</td>
+    </tr><tr> 
+      <td bgcolor=#FFFFFF width="30%">启用或关闭:</td>
+      <td bgcolor=#FFFFFF width="70%"> 
+        <input type="radio" name="atc_ifclose" value="0" $ifclose[0]>
+        启用 
+        <input type="radio" name="atc_ifclose" value="1"  $ifclose[1]>
+        关闭 </td>
+    </tr><tr> 
+      <td bgcolor=#FFFFFF width="30%">试卷未经管理员审核批阅时,是否不告知自动获得的分数:</td>
+      <td bgcolor=#FFFFFF width="70%"> 
+        <input type="radio" name="atc_hidefen" value="0" $hidefen[0]>
+        告知 
+        <input type="radio" name="atc_hidefen" value="1"  $hidefen[1]>
+        不告知</td>
+    </tr>
+<!--
+	<tr> 
+      <td bgcolor=#FFFFFF width="30%">类型:<span help=1>问卷跟试卷的区别是：问卷只作普通调查，系统不会自动评分，但管理员可以手工评分；而试卷是实现考查功能，系统会自动评分，管理员也可以评分。另外，试卷只给会员填写，不允许游客填写，而问卷可以允许游客填写。</span></td>
+      <td bgcolor=#FFFFFF width="70%"> 
+        <input type="radio" name="atc_type" value="1" $typedb[1]>
+        <span class=bold>试卷(系统自动打分)</span> 
+        <input type="radio" name="atc_type" value="2" $typedb[2]>
+        问卷(系统不自动打分,因为调查的问题没有对错之分)</td>
+    </tr>
+-->
+	
+	<tr id="answer_tr" style="display:none;"> 
+      <td bgcolor=#FFFFFF width="30%">是否共享:</td>
+      <td bgcolor=#FFFFFF width="70%"> 
+        <input type="radio" name="atc_ifshare" value="1" $ifsharedb[1]>
+        是 
+        <input type="radio" name="atc_ifshare" value="0"  $ifsharedb[0]>
+        否 </td>
+    </tr>
+    <!--
+EOT;
+if($job=='make'){print <<<EOT
+-->
+    <tr> 
+      <td bgcolor=#FFFFFF width="30%">从题库中随机抽题:(数量留空的话,即不抽取试题,试卷创建完成之后,再出试题亦可)</td>
+      <td bgcolor=#FFFFFF width="70%">只从此类别中选择试题: {$sort}<br>
+        <table width="100%" border="0" cellspacing="1" cellpadding="3" style="background:#eee;">
+          <!--
+EOT;
+foreach($paperType AS $key=>$value){print <<<EOT
+-->
+          <tr bgcolor="#FFFFFF" align="center"> 
+            <td width="39%">$value</td>
+            <td width="32%"> 共 
+              <input type="text" name="numdb[$key]" size="8">
+              题 </td>
+            <td width="29%">共 
+              <input type="text" name="fendb[$key]" size="8">
+              分</td>
+          </tr>
+          <!--
+EOT;
+}print <<<EOT
+-->
+        </table>
+      </td>
+    </tr><tr> 
+      <!--
+EOT;
+}print <<<EOT
+-->
+      <td bgcolor=#FFFFFF width="30%">&nbsp;</td>
+      <td bgcolor=#FFFFFF width="70%"> 
+        <input type="submit" name="Submit" value="提交">
+        <input type="hidden" name="id" value="$id">
+      </td></tr>
+  </form>
+</table>
+<!--
+EOT;
+?>
+-->

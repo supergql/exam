@@ -1,0 +1,69 @@
+ <!--
+<?php
+print <<<EOT
+--><table width='100%' cellspacing='1' cellpadding='3' class="tablewidth">
+  <tr bgcolor='#FFFFFF'> 
+    <td bgcolor="#FFFFFF"> [<a href="$admin_path&job=make">添加试卷</a>] [<a href="$admin_path&job=list">试卷管理</a>] 
+    </td>
+  </tr>
+</table>
+<table width='100%' cellspacing='1' cellpadding='3'  class="tablewidth">
+  <form name="form1" method="post" action="$admin_path&action=$job">
+    <tr bgcolor='#FFFFFF' class="head"> 
+      <td align="center">试卷名称</td>
+      <td width="8%" align="center" bgcolor="#FFFFFF">分类</td>
+      <td width="8%" align="center" bgcolor="#FFFFFF">挑选试题</td>
+      <td width="8%" align="center" bgcolor="#FFFFFF">创建新试题</td>
+      <td width="6%" align="center" bgcolor="#FFFFFF">考试</td>
+      <td width="6%" align="center" bgcolor="#FFFFFF">打印</td>
+      <td width="6%" align="center" bgcolor="#FFFFFF">推荐</td>
+       <td width="6%" align="center" bgcolor="#FFFFFF">排名</td><td width="7%" align="center">题目</td>
+      <td width="6%" align="center">修改</td>
+      <td width="6%" align="center">删除</td>
+    </tr>
+    <!--
+EOT;
+foreach($listdb AS $key=>$rs){
+print <<<EOT
+-->
+    <tr bgcolor='#FFFFFF'> 
+      <td>{$rs[id]}、<a href="../$dirname/exam_write.php?id=$rs[id]" target="_blank">{$rs[name]}</a></td>
+      <td align="center">$rs[fname]</td>
+      <td align="center"><a href="$admin_path&file=exam_title&job=list&addpage=1&paper_id=$rs[id]">挑选</a></td>
+      <td align="center"><a href="$admin_path&&file=exam_title&job=make&form_id=$rs[id]">创建</a></td>
+      <td align="center"><a href="../$dirname/exam_write.php?id=$rs[id]" target="_blank">参试</a></td>
+      <td align="center"><a href="$admin_path&job=print&id=$rs[id]" target="_blank">打印</a></td>
+      <td align="center">$rs[com]</td>
+       
+      <td align="center"><a href="$Murl/exam_order.php?id=$rs[id]" target="_blank">排名</a></td>
+      <td align="center"><a href="$admin_path&job=manage&id=$rs[id]"><img alt='管理题目' src='../member/images/art_icon.gif' border=0></a></td>
+      <td align="center"><a href="$admin_path&job=edit&id=$rs[id]"><img alt='点击修改' src='../member/images/button_edit.png' border=0></a></td>
+      <td align="center"><a href="$admin_path&action=delete&id=$rs[id]" onclick="return confirm('你确认要删除吗?不可恢复!');"><img alt='点击删除' src='../member/images/del_icon2.gif' border=0></a></td>
+    </tr>
+    <!--
+EOT;
+}
+print <<<EOT
+-->
+  </form>
+</table>
+<table width="99%" border="0" cellspacing="0" cellpadding="0">
+  <tr> 
+    <td align="center">$showpage</td>
+  </tr>
+  <tr>
+    <td align="center">&nbsp;</td>
+  </tr>
+</table>
+<table width='100%' cellspacing='1' cellpadding='3'  class="tablewidth">
+  <tr bgcolor='#FFFFFF' class="head" > 
+    <td>帮助说明:</td>
+  </tr>
+  <tr> 
+    <td>1.试卷创建好之后，需要到题库，挑选题目录入到试卷。</td>
+  </tr>
+</table>
+<!--
+EOT;
+?>
+-->

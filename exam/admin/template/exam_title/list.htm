@@ -1,0 +1,116 @@
+ <!--
+<?php
+print <<<EOT
+--> <table width='100%' cellspacing='1' cellpadding='3' class="tablewidth">
+  <tr bgcolor='#FFFFFF'> 
+    <td bgcolor="#FFFFFF"> [<a href="$admin_path&job=make">添加题目</a>] [<a href="$admin_path&job=list">题库管理</a>] 
+    </td>
+  </tr>
+</table>
+<table width="99%" border="0" cellspacing="1" cellpadding="3" >
+  <tr>
+    <td align="center" bgcolor="#eeeeee">请选择一个分类:{$sort_fid} 请选择一种题型: {$choose_type} 请选择一种难度: {$choose_difficult} 
+      选择一种星级:{$choose_star}</td>
+  </tr>
+</table>
+<table width='100%' cellspacing='1' cellpadding='3'  class="tablewidth">
+  <form name="form_work" method="post" action="$admin_path&action=$job" onsubmit="return postdo();">
+    <tr bgcolor='#FFFFFF' class="head" align="center"> 
+      <td width="15%">题目类型 </td>
+      <td width="56%">题目名称</td>
+      <td width="14%">所属分类</td>
+      <td width="8%">修改</td>
+      <td width="7%">删除</td>
+    </tr>
+    <!--
+EOT;
+foreach($listdb AS $key=>$rs){
+print <<<EOT
+-->
+    <tr bgcolor='#FFFFFF' align="center"> 
+      <td width="15%">{$paperType[$rs[type]]}</td>
+      <td width="56%" align="left"> 
+        <input type="checkbox" name="listdb[]" value="$rs[id]">
+        $rs[question]</td>
+      <td width="14%">$rs[fname]</td>
+      <td width="8%"><a href="$admin_path&job=edit&id=$rs[id]"><img alt='点击修改' src='../member/images/button_edit.png' border=0></a></td>
+      <td width="7%"><a href="$admin_path&action=delete&id=$rs[id]"><img alt='点击删除' src='../member/images/del_icon2.gif' border=0></a></td>
+    </tr>
+    <!--
+EOT;
+}
+print <<<EOT
+-->
+    <tr bgcolor='#FFFFFF' align="center"> 
+      <td colspan="5"> <a href="javascript:" onClick="CheckAll('all')">全选</a>/<a href="javascript:" onClick='CheckAll()'>反选</a> 
+        <a href="?action=delete&id=$rs[id]"></a> 
+        
+ <!--
+EOT;
+if($paper_id){
+print <<<EOT
+-->
+		 
+		<input type="radio" name="ctype" value="put" checked id="ctype_put">
+        录入到试卷:<font color="#0000FF">$paperdb[name]</font>
+<input type="hidden" name="form_id" value="$paper_id">
+        <input type="submit" name="Submit" value="提交">
+ <!--
+EOT;
+}else{
+print <<<EOT
+-->
+        <input type="radio" name="ctype" value="del" checked>
+        删除<input type="submit" name="Submit" value="删除">
+ <!--
+EOT;
+}
+print <<<EOT
+-->
+      </td>
+    </tr>
+  </form>
+</table>
+<table width="99%" border="0" cellspacing="0" cellpadding="0">
+  <tr> 
+    <td align="center">$showpage</td>
+  </tr>
+  <tr>
+    <td align="center">&nbsp;</td>
+  </tr>
+</table>
+<table width='100%' cellspacing='1' cellpadding='3'  class="tablewidth">
+     <tr bgcolor='#FFFFFF' class="head" > 
+    <td>帮助说明:</td>
+  </tr>
+  <tr>
+    <td>1.创建试卷表单的方法,第一步:添加题目、创建表单。第二步:把题目录入到试卷表单。<br>
+      2.题库的目的是为了实现题目共享给多个表单，多次反复使用。</td>
+  </tr>
+</table>
+<script language="JavaScript">
+<!--
+function postdo(){
+	if(document.form_work.examid.value==''&&get_obj('ctype_put').checked==true){
+		alert("不能为空,请选择一张试卷");
+		document.form_work.examid.focus();
+		return false;
+	}
+}
+function CheckAll(va){
+	form=document.form_work
+	for (var i=0;i<form.elements.length;i++){
+		var e = form.elements[i];
+		if(va=='all'){
+			e.checked = true;
+		}else{
+			e.checked == true ? e.checked = false : e.checked = true;
+		}
+	}
+}
+//-->
+</script>
+<!--
+EOT;
+?>
+-->

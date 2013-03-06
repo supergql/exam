@@ -1,0 +1,82 @@
+<!--
+<?php
+print <<<EOT
+--> 
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="MainTable">
+  <tr> 
+    <td height="200" valign="top" class="Main"> 
+	
+    
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" class="dragTable">
+        <tr> 
+          <td height="21" class="head"> 
+            <h3 class="L"></h3>
+            <span class="TAG">$rsdb[fname] -&gt; $rsdb[name]</span> 
+            <h3 class="R"></h3>
+          </td>
+        </tr>
+        <tr> 
+          <td height="50" class="middle" valign="top">
+		  
+<table width="99%" border="0" cellspacing="0" cellpadding="0" style="border:1px solid #D1D1D1;margin-bottom:5px;">
+  <tr>
+                <td style="background:#F7F7F7;border:2px solid #EEEEEE;padding:5px;line-height:21px;">
+                  <table width="100%" border="0" cellspacing="5" cellpadding="5">
+                    <tr> 
+                      <td width="40%">试卷总分： {$examtotalfen} 分</td>
+                      <td width="60%">考生得分： {$infodb[total_fen]} 分 </td>
+                    </tr>
+                    <tr> 
+                      <td width="40%">考试时间： 
+                        <!--
+EOT;
+if($rsdb[totaltime]){
+print <<<EOT
+-->
+                        <font color="#FF0000">{$rsdb[totaltime]}</font> 分钟 
+                        <!--
+EOT;
+}else{
+print <<<EOT
+-->
+                        <font color="#0000FF">不限</font> 
+                        <!--
+EOT;
+}
+print <<<EOT
+-->
+                      </td>
+                      <td width="60%">考生用时： {$time_s} 分 {$time_i} 秒</td>
+                    </tr>
+                    <tr> 
+                      <td width="40%">参考人数： {$rsdb[joins]} 人 </td>
+                      <td width="60%">成绩排行： 第 {$ordernum} 名 </td>
+                    </tr>
+                    <tr align="center"> 
+                      <td colspan="2"> <br>
+                        <br>
+                        <a href="$webdb[www_url]/member/?main=$Murl/member/view.php?student_id={$infodb[student_id]}&form_id={$infodb[form_id]}" target="_blank">查看试卷</a> 
+                        <a href="exam_order.php?id=$id" target="_blank">查看排名</a></td>
+                    </tr>
+                  </table>
+                  <br>
+                </td>
+  </tr>
+</table>
+            
+          </td>
+        </tr>
+        <tr> 
+          <td class="foot"> 
+            <h3 class="L"></h3>
+            <h3 class="R"></h3>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!--
+EOT;
+?>
+-->

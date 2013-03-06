@@ -1,0 +1,165 @@
+<!--
+<?php
+print <<<EOT
+-->
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="MainTable">
+  <tr> 
+    <td height="200" valign="top" width="75%" class="Main"> 
+      
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="dragTable">
+  <tr> 
+          <td height="21" class="head"> 
+            <h3 class="L"></h3>
+            <span class="TAG">$fidDB[name]</span> 
+            <h3 class="R"></h3>
+           </td>
+        </tr>
+        <tr> 
+          <td height="50" class="middle" valign="top"> 
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="43%" align="center"><img src="$webdb[www_url]/images/v7/exam/shijuan.jpg"></td>
+                <td height="200" width="57%" style="line-height:25px;padding-top:20px;">试卷名称：<b>$rsdb[name]</b><br>
+                  所需$webdb[MoneyName]：<b><font color="#FF0000">{$rsdb[money]}</font></b> 
+                  $webdb[MoneyDW] <br>
+                  卷面总分：{$examtotalfen} 分 <br>
+                  已考人数：{$rsdb[joins]} 人 <br>
+                  关 注 度：{$rsdb[hits]} 次<br>
+                  答题时间：
+                  <!--
+EOT;
+if($rsdb[totaltime]){
+print <<<EOT
+-->
+                  <font color="#FF0000">{$rsdb[totaltime]}</font> 分钟 
+                  <!--
+EOT;
+}else{
+print <<<EOT
+-->
+                  <font color="#0000FF">不限</font> 
+                  <!--
+EOT;
+}
+print <<<EOT
+-->
+                  <br>
+                  开考日期：
+                  <!--
+EOT;
+if($rsdb[begintime]||$rsdb[endtime]){
+$rsdb[begintime] && $rsdb[_begintime]=date("Y-m-d H:i:s",$rsdb[begintime])."(开始日期)";
+$rsdb[endtime] && $rsdb[_endtime]=date("Y-m-d H:i:s",$rsdb[endtime])."(终止日期)";
+print <<<EOT
+-->
+                  <font color="#0000FF">$rsdb[_begintime] $rsdb[_endtime]</font> 
+                  <!--
+EOT;
+}else{
+print <<<EOT
+-->
+                  <font color="#0000FF">不限</font> 
+                  <!--
+EOT;
+}
+print <<<EOT
+-->
+                  <br>
+                  允许参试的用户组： 
+                  <!--
+EOT;
+if($rsdb[allowjoin]){
+$detail=explode(',',$rsdb[allowjoin]);
+foreach($detail AS $value)$show.="{$ltitle[$value]},";
+print <<<EOT
+-->
+                  <font color="#0000FF">$show</font> 
+                  <!--
+EOT;
+}else{
+print <<<EOT
+-->
+                  <font color="#0000FF">不限</font> 
+                  <!--
+EOT;
+}
+print <<<EOT
+-->
+                  <br>
+                  <br>
+                  <div><a href="exam_write.php?fid=$fid&id=$id"><img src="$webdb[www_url]/images/v7/exam/gotoexam.gif" border="0"></a></div>
+                </td>
+              </tr>
+            </table>
+            <table width="98%" border="0" cellspacing="0" cellpadding="0" align="center" style="background:#FAFAFA;">
+              <tr>
+                <td style="border-bottom:1px dotted #ccc;padding:5px;"><b>考前必读：</b></td>
+              </tr>
+              <tr>
+                <td style="padding:5px;">· 如果你已经准备好了，就点击“点击进入考场”按钮即进入考场，开始计时。 
+                  <br>
+                  · 有的试卷有时间限制,有的没时间限制,<br>
+                  · 有时间限制的,在上方会显示当前考试还剩余时间,而没时间限制的,就显示考试已进行多长时间。<br>
+                  · 有的试卷限制了开考的日期,没到或者超过了指定日期,则不可以考试。<br>
+                  · 有的试卷要收费，则每考一次，要收费。<br>
+                  · 有的试卷限制了指定用户组才可以参加考试。<br>
+                  · 客观题系统自动评分，但有的试卷设置了，只有管理员批阅后才显示所得分数。<br>
+                  · 有时间限制的试卷，当进入考场后，不可以刷新或新开考卷，否则会禁止考试。<br>
+                  · 每份试卷每人只允许考一次。<br>
+                  · 选项前的单选框(
+                  <input type="radio" name="radiobutton" value="radiobutton">
+                  )表示该题只能选择一个答案。 <br>
+                  · 选项前的复选框(
+                  <input type="checkbox" name="checkbox" value="checkbox">
+                  )表示该题可以选择一个或多个答案。 <br>
+                  · 当完成试卷后，可以点击“我要交卷”按钮提交试卷。 <br>
+                  · 主观题可以根据参考答案自己评分； </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr> 
+          <td class="foot"> 
+            <h3 class="L"></h3>
+            <h3 class="R"></h3>
+          </td>
+        </tr>
+      </table></td>
+    <td valign="top" width="25%" class="Side" align="right"> 
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" class="dragTable">
+        <tr> 
+          <td class="head"> 
+            <h3 class="L"></h3>
+            <span class="TAG">{$Fid_db[name][$fup]}</span> 
+            <h3 class="R"></h3>
+          </td>
+        </tr>
+        <tr> 
+          <td class="middle ListAllSort" valign="top" align="left"> 
+            <!--
+EOT;
+foreach($Fid_db[$fup] AS $key=>$name){
+$color=$key==$fid?'red':'';
+print <<<EOT
+-->
+            <div> <a href="list.php?fid=$key" style="color:$color;">$name</a> </div>
+            <!--
+EOT;
+}print <<<EOT
+-->
+          </td>
+        </tr>
+        <tr> 
+          <td class="foot"> 
+            <h3 class="L"></h3>
+            <h3 class="R"></h3>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!--
+EOT;
+?>
+-->

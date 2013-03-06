@@ -1,0 +1,100 @@
+ <!--
+<?php
+print <<<EOT
+-->  
+<style type="text/css">
+<!--
+.dragTable{
+	margin-top:5px;	
+}
+.dragTable a{
+	color:#333;
+}
+.dragTable .trh td{
+	height:25px;
+	vertical-align:middle;
+	text-align:center;
+	background:#DDD;
+	border-right:#FFF solid 1px;
+}
+.dragTable .trc td{
+	padding:5px;
+	border-bottom:#DDD dotted 1px;	
+	text-align:center;
+	color:#666;
+}
+.dragTable .trc .td1{
+	width:10%;	
+	color:blue;	
+}
+.dragTable .trc .td2{
+	width:55%;
+	text-align:left;	
+}
+.dragTable .trc .td3{
+	width:15%;	
+}
+.dragTable .trc .td3 a{
+	color:#f60	
+}
+.dragTable .trc .td4{
+	width:10%;	
+}
+.dragTable .trc .td5{
+	width:10%;	
+}
+.dragTable .choose{
+	padding:8px 0 5px 10px;
+}
+.dragTable .page{
+	padding:8px;
+	text-align:center;
+}
+.dragTable .page a{
+	border:#DDD solid 1px;
+	padding:3px 5px 2px 5px;
+}
+-->
+</style>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="dragTable" >
+  <tr>
+  	<td class="head">试题管理</td>
+  </tr>
+  <tr>
+  	<td class="middle">
+    	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr class="trh">
+            <td class="td1">题目类型</td>
+            <td class="td2">题目名称</td>
+            <td class="td3">所属分类</td>
+            <td class="td4">修改</td>
+            <td class="td5">删除</td>
+          </tr>
+<!--
+EOT;
+foreach($listdb AS $key=>$rs){
+print <<<EOT
+-->
+		  <tr class="trc">
+            <td class="td1">{$paperType[$rs[type]]}</td>
+            <td class="td2">$rs[question]</td>
+            <td class="td3">$rs[fname]</td>
+            <td class="td4"><a href="?job=edit&id=$rs[id]"><img alt='点击修改' src='$webdb[www_url]/member/images/button_edit.png'/></a></td>
+            <td class="td5"><a href="?action=delete&id=$rs[id]"><img alt='点击删除' src='$webdb[www_url]/member/images/del_icon2.gif'/></a></td>
+          </tr>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+		  <tr> 
+              <td colspan="5" class="page">$showpage</td>
+          </tr>
+        </table>
+    </td>
+  </tr>
+</table>
+<!--
+EOT;
+?>
+-->
